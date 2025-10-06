@@ -12,7 +12,11 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return JSONResponse(content={'status': 'ok'}, status_code=200)
+    try:
+        import requests
+        return JSONResponse(content={'status': 'ok'}, status_code=200)
+    except:
+        return JSONResponse(content={'status': 'error', 'message': 'Module requests not installed yet, please try again in a few seconds.'}, status_code=500)
 
 @app.get("/pha")
 def pha():
